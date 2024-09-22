@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.bike-store</groupId>
+	<artifactId>bike-store</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Bike Store</name>
+	<description>Loja de bicicletas com Elasticsearch e CRUD</description>
+
+	<repositories>
+		 <repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+			</repository>
+			<repository>
+				<id>spring-releases</id>
+				<url>https://repo.spring.io/release</url>
+			</repository>
+			<repository>
+				<id>spring-snapshots</id>
+				<url>https://repo.spring.io/snapshot</url>
+    	</repository>
+		
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Repository Group</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>20</java.version>
+		<maven.compiler.source>20</maven.compiler.source>
+    	<maven.compiler.target>20</maven.compiler.target>
+	</properties>
+	<dependencies>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		
+    	<!-- Cliente REST de baixo nível do Elasticsearch 8.x -->
+    	<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-client</artifactId>
+			<version>8.15.1</version>
+    	</dependency>
+
+		 <!-- Swagger UI -->
+    	<dependency>
+        	<groupId>org.springdoc</groupId>
+        	<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        	<version>2.3.0</version>
+    	</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+       <!--eu dep lastic add  -->
+	   <dependency>
+    		<groupId>org.apache.httpcomponents</groupId>
+    		<artifactId>httpclient</artifactId>
+    		<version>4.5.14</version> <!-- ou qualquer versão compatível -->
+		</dependency>
+
+		<dependency>
+    		<groupId>org.elasticsearch.client</groupId>
+    		<artifactId>elasticsearch-rest-client</artifactId>
+    		<version>8.15.1</version>
+		</dependency>
+		<dependency>
+		<groupId>org.elasticsearch.client</groupId>
+    		<artifactId>elasticsearch-rest-client-sniffer</artifactId>
+    		<version>8.15.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			 <!-- add jmeter -->
+			<plugin>
+            <groupId>com.lazerycode.jmeter</groupId>
+            <artifactId>jmeter-maven-plugin</artifactId>
+            <version>3.4.0</version>
+            <executions>
+                <execution>
+                    <id>jmeter-tests</id>
+                    <goals>
+                        <goal>jmeter</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <testFilesDirectory>${basedir}/src/test/jmeter</testFilesDirectory>
+                <resultsDirectory>${project.build.directory}/jmeter/results</resultsDirectory>
+                <resultsTimestamp>false</resultsTimestamp>
+            </configuration>
+
+        </plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
